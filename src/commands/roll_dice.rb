@@ -15,7 +15,9 @@ module Commands
         roll_dice(dice)
       end
 
-      "#{dice_values} = #{calculator.evaluate(dice_values)}"
+      evaluated_expression = calculator.evaluate(dice_values)
+
+      return "#{dice_values} = #{evaluated_expression}" if evaluated_expression
     end
 
     private
