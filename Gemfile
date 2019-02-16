@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+ruby "2.6.1"
+
 gem "dentaku"
 gem "discordrb"
 gem "dotenv"
@@ -10,4 +12,3 @@ gem "sinatra"
 group :development, :test do
   gem "rubocop"
 end
-
