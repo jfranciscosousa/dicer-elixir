@@ -35,8 +35,8 @@ module Bot
     event.respond "#{event.author.username} your new stats are: #{response.join(" ")}"
   end
 
-  def self.start
-    @bot.run
+  def self.run
+    @bot.run(true)
   end
 
   def self.bot

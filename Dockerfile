@@ -1,4 +1,4 @@
-FROM ruby:2.6.1-alpine
+FROM ruby:2.6.3-alpine
 
 RUN apk add --update alpine-sdk
 RUN gem install bundler
