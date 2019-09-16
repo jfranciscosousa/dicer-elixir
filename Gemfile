@@ -7,7 +7,6 @@ gem "discordrb"
 gem "dotenv"
 gem "eventmachine"
 gem "rake"
-gem "rufus-scheduler"
 gem "sinatra"
 gem "thin"
 

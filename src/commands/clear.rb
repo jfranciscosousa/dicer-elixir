@@ -1,4 +1,4 @@
-COMMANDS = ["!roll", "!roll_stats", "!clear"].freeze
+COMMANDS = ["!roll", "!roll_stats", "!clear", "!dicer roll", "!dicer roll_stats", "!dicer clear"].freeze
 
 module Commands
   class Clear
@@ -19,7 +19,7 @@ module Commands
     attr_reader :channel, :bot
 
     def message_eligible_to_delete(message)
-      COMMANDS.find { |command| message.content.start_with? command } || message.author.bot_account?
+      COMMANDS.find { |command| message.content.start_with? command } || message.author.current_bot?
     end
   end
 end

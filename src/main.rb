@@ -2,7 +2,6 @@ if $PROGRAM_NAME == __FILE__
   require "eventmachine"
   require "discordrb"
   require_relative "bot"
-  require_relative "cleanup_scheduler"
   require_relative "webserver"
 
   EM.run do
@@ -13,9 +12,9 @@ if $PROGRAM_NAME == __FILE__
       signals: false,
     )
 
-    EM.defer {
+    EM.defer do
       Bot.run
-    }
+    end
   end
 
   puts "Bye!"
