@@ -3,6 +3,8 @@ if $PROGRAM_NAME == __FILE__
   require "bundler/setup"
   Bundler.require(:default)
 
+  Dotenv.load
+
   loader = Zeitwerk::Loader.for_gem
   loader.setup
 

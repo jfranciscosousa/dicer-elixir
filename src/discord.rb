@@ -1,5 +1,4 @@
 module Discord
-  Dotenv.load
   @bot = Discordrb::Bot.new(
     token: ENV["TOKEN"],
     client_id: ENV["CLIENT_ID"],
