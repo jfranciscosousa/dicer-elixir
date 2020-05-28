@@ -13,7 +13,7 @@ class Discord::Commands::RollDice
       return "#{dice_values} = #{evaluated_expression}" if evaluated_expression
     end
   rescue Timeout::Error
-    warn "A instance of a !roll command expireds"
+    warn "An instance of a !roll command expired"
   end
 
   private
