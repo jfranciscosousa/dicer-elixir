@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+. "./bin/functions"
+
+pp_info "server" "starting development server..."
+bundle exec rake start

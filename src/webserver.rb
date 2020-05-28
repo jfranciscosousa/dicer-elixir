@@ -1,12 +1,9 @@
-require "sinatra/base"
-require "erb"
-require_relative "bot"
-
-class WebServer < Sinatra::Base
-  set :views, File.dirname(__FILE__) + "/views"
+class Webserver < Sinatra::Base
+  set :views, File.dirname(__FILE__) + "/webserver/views"
+  set :public_folder, File.dirname(__FILE__) + "/webserver/public"
 
   get "/" do
-    @url = Bot.bot.invite_url
+    @url = Discord.bot.invite_url
 
     erb :index
   end

@@ -1,28 +1,13 @@
 AllCops:
-  Include:
-    - "**/Rakefile"
-    - "**/config.ru"
-    - "Gemfile"
-  Exclude:
-    - "db/**/*"
-    - "config/**/*"
-    - "script/**/*"
-    - "bin/**/*"
-    - "vendor/**/*"
-    - "node_modules/**/*"
-    - "spec/factories.rb"
-  TargetRubyVersion: 2.6.3
+  TargetRubyVersion: 2.7.1
 
-Metrics/LineLength:
+Layout/LineLength:
   Enabled: false
 
-Metrics/MethodLength:
-  Max: 12
+Layout/MethodLength:
+  Max: 15
 
-Metrics/ParameterLists:
-  Enabled: false
-
-Layout/AlignParameters:
+Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
 
 Layout/DotPosition:
@@ -34,6 +19,26 @@ Layout/MultilineOperationIndentation:
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Naming/PredicateName:
+  ForbiddenPrefixes:
+    - is_
+    - have_
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+Style/AndOr:
+  EnforcedStyle: conditionals
+
 Style/ClassAndModuleChildren:
   Enabled: false
 
@@ -42,11 +47,6 @@ Style/Documentation:
 
 Style/IfUnlessModifier:
   Enabled: false
-
-Naming/PredicateName:
-  NamePrefixBlacklist:
-    - is_
-    - have_
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
@@ -66,5 +66,36 @@ Style/TrailingCommaInArrayLiteral:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Style/StringLiteralsInInterpolation:
-  EnforcedStyle: double_quotes
+Style/Lambda:
+  EnforcedStyle: literal
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/ExponentialNotation:
+  Enabled: false
+
+Style/SlicingWithRange:
+  Enabled: true
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
+    - lib/tasks/**/*.rake
+    - config/routes.rb
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/*.rb
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true

@@ -1,10 +1,4 @@
-require "dotenv"
-require "discordrb"
-require_relative "commands/clear"
-require_relative "commands/roll_dice"
-require_relative "commands/roll_stats"
-
-module Bot
+module Discord
   Dotenv.load
   @bot = Discordrb::Bot.new(
     token: ENV["TOKEN"],
@@ -32,7 +26,7 @@ module Bot
   def self.roll_stats(event)
     response = Commands::RollStats.new.perform
 
-    event.respond "#{event.author.username} your new stats are: #{response.join(" ")}"
+    event.respond "#{event.author.username} your new stats are: #{response.join(' ')}"
   end
 
   @bot.message(with_text: "!clear") { |event| clear(event) }
