@@ -19,6 +19,7 @@ GEM
     event_emitter (0.2.6)
     eventmachine (1.2.7)
     ffi (1.12.2)
+    foreman (0.87.1)
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -87,6 +88,7 @@ DEPENDENCIES
   discordrb
   dotenv
   eventmachine
+  foreman
   rake
   rubocop
   sinatra

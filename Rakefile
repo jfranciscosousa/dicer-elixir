@@ -1,3 +1,11 @@
+require "bundler/setup"
+require "dotenv/load" if ENV["RUBY_ENV"] != "production"
+
+Bundler.require(:default, ENV["RUBY_ENV"] || "development")
+loader = Zeitwerk::Loader.for_gem
+loader.push_dir(File.dirname(__FILE__) + "/src")
+loader.setup
+
 if Gem.loaded_specs.key?("rubocop")
   require "rubocop/rake_task"
 
@@ -9,6 +17,13 @@ if Gem.loaded_specs.key?("rubocop")
   task lint: %i[lint:ruby]
 end
 
-task :start do
-  ruby "src/main.rb"
+task :bot do
+  Discord.run
+end
+
+task :web do
+  Rack::Server.start(
+    Port: ENV["PORT"] || 4567,
+    app: Webserver.new,
+  )
 end

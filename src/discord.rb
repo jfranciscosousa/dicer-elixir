@@ -38,7 +38,7 @@ module Discord
   @bot.message(with_text: "!dicer roll_stats") { |event| roll_stats(event) }
 
   def self.run
-    @bot.run(true)
+    @bot.run
   end
 
   def self.bot
