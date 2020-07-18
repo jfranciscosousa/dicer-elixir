@@ -87,7 +87,6 @@ DEPENDENCIES
   dentaku
   discordrb
   dotenv
-  eventmachine
   foreman
   rake
   rubocop
