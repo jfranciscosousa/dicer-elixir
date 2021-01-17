@@ -1,17 +1,13 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 BLUE='\033[1;34m'
 GREEN='\033[1;32m'
+YELLOW='\033[1;99m'
 RED='\033[1;91m'
-BLUE_NB='\033[0;34m'
-GREEN_NB='\033[0;32m'
-RED_NB='\033[0;91m'
 RESET='\033[0m'
 
-# pretty print
-
 pp() {
-  printf "\n$1[$2]: $3${RESET}\n"
+  printf "$1[$2]: $3${RESET}\n"
 }
 
 pp_info() {
@@ -26,14 +22,8 @@ pp_error() {
   pp $RED "$1" "$2"
 }
 
-# print text
-
-pt() {
-  printf "\n$1$2${RESET}\n"
-}
-
-pt_info() {
-  pt $BLUE_NB "$1"
+pp_warn() {
+  pp $YELLOW "$1" "$2"
 }
 
 not_installed() {
@@ -41,10 +31,17 @@ not_installed() {
 }
 
 ensure_confirmation() {
-  read -r "confirmation?please confirm you want to continue [y/n] (default: y)"
+  read -r "confirmation?please confirm you want to continue [y/n] (default: y) "
   confirmation=${confirmation:-"y"}
 
   if [ "$confirmation" != "y" ]; then
     exit 1
   fi
+}
+
+ask_confirmation() {
+  read -r "confirmation?please confirm you want to continue [y/n] (default: y) "
+  confirmation=${confirmation:-"y"}
+
+  [[ "$confirmation" == "y" ]];
 }

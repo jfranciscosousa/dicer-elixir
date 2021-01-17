@@ -4,5 +4,6 @@ set -e
 . "./bin/functions"
 test -f .envrc && . "./.envrc"
 
-pp_info "server" "Starting development server..."
-iex -S mix
+pp_info "build" "building the app..."
+
+mix release

@@ -1,1 +1,1 @@
-web: rake all
+web: _build/prod/rel/dicer/bin/dicer start

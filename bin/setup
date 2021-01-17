@@ -5,15 +5,13 @@ set -e
 
 env=${1:-"dev"}
 
-#
-# env setup
-#
-
-bin/secrets "$env"
-
-#
-# languages setup
-#
+pp_info "setup" "Setting up the env..."
+if [ ! -f .envrc ]; then
+  cp .envrc.sample .envrc
+  printf "env file created, you might want to open .envrc and set the correct values. We recommend using direnv to manage it.\n\n"
+else
+  printf "envrc file already exists, skipping...\n\n"
+fi
 
 pp_info "setup" "Installing required languages..."
 
@@ -28,19 +26,20 @@ if not_installed "asdf"; then
   ensure_confirmation
 else
   set +e
-  asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git 2>/dev/null
+  asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git 2>/dev/null
+  asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git 2>/dev/null
   set -e
 
   asdf install
-
-  pp_info "setup" "Installing bundler"
-
-  gem install bundler
 fi
 
-#
-# dependencies
-#
+. "./.envrc"
 
-pp_info "setup" "Installing dependencies with bundler"
-bundle check || bundle install
+echo ""
+pp_info "setup" "Installing elixir dependencies..."
+MIX_ENV=$env mix local.hex --force
+MIX_ENV=$env mix local.rebar --force
+MIX_ENV=$env mix deps.get
+
+echo ""
+pp_success "setup" "You're good to go! Run bin/server to get the development server running."

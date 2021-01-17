@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dicer</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Fira+Mono|Roboto");
+
+      body {
+        margin: 40px auto;
+        max-width: 650px;
+        line-height: 1.6;
+        font-size: 18px;
+        color: #444;
+        padding: 0 10px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.2;
+        padding-bottom: 0.2rem;
+        border-bottom: 1px solid gainsboro;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      a {
+        font-family: "Roboto", sans-serif;
+      }
+
+      a:visited {
+        color: blue;
+      }
+
+      pre {
+        display: flex;
+        flex-direction: column;
+        background-color: whitesmoke;
+        border-radius: 4px;
+        padding: 1rem 0.5rem;
+      }
+
+      pre > * + * {
+        margin-top: 1.5rem;
+      }
+
+      pre,
+      code {
+        white-space: normal;
+        font-family: "Fira Mono", monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <script>0</script>
+    <main>
+      <h1>Dicer</h1>
+      <p>
+        Dicer is a Discord bot that rolls dices with basic math expressions.
+      </p>
+      <p>
+        You can add to your discord server by following the invite url
+        <a href=<%= invite_url %>>here</a>.
+      </p>
+      <h2>Usage</h2>
+      <p>You can perform basic rolls this way:</p>
+      <pre>
+        <code>
+          !roll 2d20 + 10
+        </code>
+        <code>
+          Dicer: (8 + 12) + 10 = 30
+        </code>
+      </pre>
+      <p>You can also delete all the commands made by users and the responses of the bot by running</p>
+      <pre>!clear</pre>
+      <p>If you have command conflicts with another bot you can prefix every call with the bot name, like <pre><code>!dicer clear</code></pre>
+      <p>
+        <a href="https://github.com/jfranciscosousa/dicer">Check me out on Github</a>
+      </p>
+    </main>
+  </body>
+</html>
