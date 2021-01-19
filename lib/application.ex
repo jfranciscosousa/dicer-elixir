@@ -6,7 +6,9 @@ defmodule Dicer do
       Plug.Cowboy.child_spec(
         scheme: :http,
         plug: DicerWeb.Endpoint,
-        options: [port: System.get_env("PORT", "4000") |> String.to_integer()]
+        options: [
+          port: Application.get_env(:dicer, :port)
+        ]
       ),
       DicerWeb.Bot
     ]

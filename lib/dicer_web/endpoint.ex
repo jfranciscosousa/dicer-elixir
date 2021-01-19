@@ -4,7 +4,7 @@ defmodule DicerWeb.Endpoint do
   @template_dir "lib/dicer_web/templates"
   @public_dir "lib/dicer_web/public"
   @invite_url "https://discord.com/oauth2/authorize?client_id=#{
-                System.get_env("DISCORD_CLIENT_ID")
+                Application.get_env(:dicer, :client_id)
               }&scope=bot"
 
   plug(Plug.Logger)
