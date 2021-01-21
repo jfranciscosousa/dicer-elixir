@@ -20,11 +20,20 @@ defmodule Dicer.Roll do
   end
 
   defp handle_dice(number_of_dice, dice) do
-    for(_i <- 1..number_of_dice, do: handle_one_dice(dice))
-    |> Enum.join(" + ")
+    cond do
+      number_of_dice > 500 ->
+        raise "Stop right there. That's too many dice"
+
+      true ->
+        for(_i <- 1..number_of_dice, do: handle_one_dice(dice))
+        |> Enum.join(" + ")
+    end
   end
 
   defp handle_one_dice(dice) do
-    Enum.random(1..dice) |> to_string
+    cond do
+      dice > 1000 -> raise "Haha no. There are no dice this large."
+      true -> :rand.uniform(dice) |> to_string
+    end
   end
 end

@@ -16,9 +16,11 @@ defmodule DicerWeb.MessageCreate.ClearHandler do
            Api.get_channel_messages(msg.channel_id, :infinity),
          messages_to_delete <-
            Enum.filter(messages_to_delete, &eligible_message?/1),
-         messages_to_delete <-
-           Enum.map(messages_to_delete, fn message -> message.id end) do
-      Api.bulk_delete_messages(msg.channel_id, messages_to_delete)
+         messages_to_delete_only_ids <-
+           Enum.map(messages_to_delete, fn message -> message.id end),
+         {:ok} <-
+           Api.bulk_delete_messages(msg.channel_id, messages_to_delete_only_ids) do
+      {:ok, :deleted}
     else
       {:error, error} -> {:error, error}
     end

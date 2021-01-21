@@ -14,20 +14,30 @@ defmodule DicerWeb.Bot do
   end
 
   def handle_event({:MESSAGE_CREATE, msg, _ws_state}) do
-    case DicerWeb.MessageCreate.call(msg.content, msg) do
-      {:ok, :ignore} ->
-        :ignore
+    try do
+      case DicerWeb.MessageCreate.call(msg.content, msg) do
+        {:ok, :ignore} ->
+          :ignore
 
-      {:ok, _} ->
-        Logger.info("successfull command \"#{msg.content}\"")
+        {:ok, _} ->
+          Logger.info("successfull command \"#{msg.content}\"")
 
-      {:error, error} ->
+        {:error, error} ->
+          Api.create_message(
+            msg.channel_id,
+            "I've blown up and can't deal with this by myself. "
+          )
+
+          Logger.error(error)
+      end
+    rescue
+      e in RuntimeError ->
         Api.create_message(
           msg.channel_id,
           "I've blown up and can't deal with this by myself. "
         )
 
-        Logger.error(error)
+        Logger.error(e)
     end
   end
 

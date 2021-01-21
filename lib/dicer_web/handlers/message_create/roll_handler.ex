@@ -7,7 +7,7 @@ defmodule DicerWeb.MessageCreate.RollHandler do
 
     with {:ok, expression, total} <- Roll.call(input),
          response <- "#{expression} = #{total} by #{author}" do
-      if String.length(expression) > 1900 do
+      if String.length(response) >= 2000 do
         Api.create_message(msg.channel_id, "#{total} by #{author}")
       else
         Api.create_message(msg.channel_id, response)

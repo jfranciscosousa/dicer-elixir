@@ -36,10 +36,10 @@ defmodule Dicer.RollStats do
 
   defp roll_stat do
     [
-      Enum.random(1..6),
-      Enum.random(1..6),
-      Enum.random(1..6),
-      Enum.random(1..6)
+      :rand.uniform(6),
+      :rand.uniform(6),
+      :rand.uniform(6),
+      :rand.uniform(6)
     ]
     |> Enum.sort()
     |> Enum.take(3)
