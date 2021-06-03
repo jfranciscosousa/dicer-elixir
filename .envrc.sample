@@ -1,0 +1,2 @@
+export DISCORD_CLIENT_ID="client_id"
+export DISCORD_TOKEN="token"

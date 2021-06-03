@@ -1,9 +1,10 @@
 defmodule DicerWeb.MessageCreate.RollStatsHandler do
   alias Nostrum.Api
   alias Dicer.RollStats
+  alias Dicer.FormatUtils
 
   def call(msg) do
-    author = msg.author.username
+    author = FormatUtils.user_to_tag(msg.author)
 
     with {:ok, result} <- RollStats.call(),
          result <- result |> Enum.map(&to_string/1) |> Enum.join("  "),
