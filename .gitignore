@@ -32,3 +32,4 @@ dicer-*.tar
 .envrc
 .env.*
 .envrc.*
+!.envrc.sample
