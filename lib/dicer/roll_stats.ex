@@ -42,6 +42,7 @@ defmodule Dicer.RollStats do
       :rand.uniform(6)
     ]
     |> Enum.sort()
+    |> Enum.reverse()
     |> Enum.take(3)
     |> Enum.sum()
   end
