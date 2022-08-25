@@ -14,10 +14,10 @@ defmodule DicerWeb.MessageCreate.RollHandler do
         Api.create_message(msg.channel_id, response)
       end
     else
-      {:error, _} ->
+      {:error, error} ->
         Api.create_message(
           msg.channel_id,
-          "Can't roll that my friend #{author}"
+          "#{error} #{author}"
         )
     end
   end

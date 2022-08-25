@@ -25,7 +25,7 @@ defmodule DicerWeb.Bot do
         {:error, error} ->
           Api.create_message(
             msg.channel_id,
-            "I've blown up and can't deal with this by myself. "
+            "I've blown up and can't deal with this by myself."
           )
 
           Logger.error(error)

@@ -1,13 +1,18 @@
 defmodule Dicer.Roll do
   @spec call(String.t()) :: {:error, map} | {:ok, String.t(), number}
   def call(input) do
-    with input <- String.trim(input),
-         expression <-
-           Regex.replace(~r/([0-9]+)d([0-9]+)/, input, &replace_fn/3),
-         {:ok, total} <- Abacus.eval(expression) do
-      {:ok, expression, total}
-    else
-      {:error, error} -> {:error, error}
+    try do
+      with input <- String.trim(input),
+           expression <-
+             Regex.replace(~r/([0-9]+)d([0-9]+)/, input, &replace_fn/3),
+           {:ok, total} <- Abacus.eval(expression) do
+        {:ok, expression, total}
+      else
+        {:error, error} -> {:error, error}
+      end
+    rescue
+      runtime_error in RuntimeError ->
+        {:error, runtime_error.message}
     end
   end
 

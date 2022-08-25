@@ -3,7 +3,6 @@ defmodule DicerWeb.Endpoint do
 
   @template_dir "lib/dicer_web/templates"
   @public_dir "lib/dicer_web/public"
-  @invite_url "https://discord.com/oauth2/authorize?client_id=#{Application.get_env(:dicer, :client_id)}&scope=bot"
 
   plug(Plug.Logger)
   plug(Plug.Static, at: "/static", from: {:dicer, @public_dir})
@@ -11,7 +10,9 @@ defmodule DicerWeb.Endpoint do
   plug(:dispatch)
 
   get "/" do
-    render(conn, "index.html", invite_url: @invite_url)
+    invite_url = "https://discord.com/oauth2/authorize?client_id=#{Application.get_env(:dicer, :client_id)}&scope=bot"
+
+    render(conn, "index.html", invite_url: invite_url)
   end
 
   match _ do
