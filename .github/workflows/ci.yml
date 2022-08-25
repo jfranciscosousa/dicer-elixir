@@ -14,11 +14,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Read .tool-versions
+      uses: marocchino/tool-versions-action@v1
+      id: versions
+
     - name: Setup elixir
       uses: erlef/setup-beam@v1
       with:
-        elixir-version: 1.13.4
-        otp-version: 25.0.3
+        elixir-version: ${{ steps.versions.outputs.elixir }}
+        otp-version: ${{ steps.versions.outputs.erlang }}
 
     - name: Cache elixir deps
       uses: actions/cache@v1
