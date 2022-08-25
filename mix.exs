@@ -20,10 +20,18 @@ defmodule Dicer.MixProject do
 
   defp deps do
     [
-      {:abacus, "~> 0.4.2"},
-      {:plug_cowboy, "~> 2.0"},
-      {:mock, "~> 0.3.0", only: :test},
-      {:nostrum, "~> 0.4"}
+      {:abacus, "~> 2.0.0"},
+      {:cowlib, "~> 2.11.1",
+       [
+         env: :prod,
+         hex: "remedy_cowlib",
+         repo: "hexpm",
+         optional: false,
+         override: true
+       ]},
+      {:plug_cowboy, "~> 2.5.2"},
+      {:mock, "~> 0.3.7", only: :test},
+      {:nostrum, "~> 0.6.1"}
     ]
   end
 end

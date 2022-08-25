@@ -5,7 +5,8 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,8 +17,8 @@ jobs:
     - name: Setup elixir
       uses: erlef/setup-beam@v1
       with:
-        elixir-version: 1.12.1
-        otp-version: 24.0
+        elixir-version: 1.13.4
+        otp-version: 25.0.3
 
     - name: Cache elixir deps
       uses: actions/cache@v1
@@ -44,3 +45,11 @@ jobs:
 
     - name: Run Tests
       run: bin/test
+
+    - name: Setup fly
+      if: github.ref == 'refs/heads/master'
+      uses: superfly/flyctl-actions/setup-flyctl@master
+
+    - name: Deploy fly
+      if: github.ref == 'refs/heads/master'
+      run: flyctl deploy --remote-only

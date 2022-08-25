@@ -10,7 +10,8 @@ defmodule DicerWeb.Endpoint do
   plug(:dispatch)
 
   get "/" do
-    invite_url = "https://discord.com/oauth2/authorize?client_id=#{Application.get_env(:dicer, :client_id)}&scope=bot"
+    invite_url =
+      "https://discord.com/oauth2/authorize?client_id=#{Application.get_env(:dicer, :client_id)}&scope=bot"
 
     render(conn, "index.html", invite_url: invite_url)
   end
