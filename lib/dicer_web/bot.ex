@@ -1,9 +1,10 @@
 defmodule DicerWeb.Bot do
   require Logger
 
-  use Nostrum.Consumer
+  alias DicerWeb.CommandRegistry
+  alias Dicer.Utils.Discord
 
-  alias Nostrum.Api
+  use Nostrum.Consumer
 
   def start_link do
     Consumer.start_link(__MODULE__)
@@ -13,18 +14,21 @@ defmodule DicerWeb.Bot do
     start_link()
   end
 
-  def handle_event({:MESSAGE_CREATE, msg, _ws_state}) do
+  def handle_event({:INTERACTION_CREATE, interaction, _ws_state}) do
     try do
-      case DicerWeb.MessageCreate.call(msg.content, msg) do
+      case DicerWeb.InteractionCreate.call(interaction) do
         {:ok, :ignore} ->
           :ignore
 
         {:ok, _} ->
-          Logger.info("successfull command \"#{msg.content}\"")
+          Logger.info("successfull command \"#{interaction.data.name}\"")
+
+        {:ok} ->
+          Logger.info("successfull command \"#{interaction.data.name}\"")
 
         {:error, error} ->
-          Api.create_message(
-            msg.channel_id,
+          Discord.simple_interaction_response(
+            interaction,
             "I've blown up and can't deal with this by myself."
           )
 
@@ -32,13 +36,17 @@ defmodule DicerWeb.Bot do
       end
     rescue
       e in RuntimeError ->
-        Api.create_message(
-          msg.channel_id,
-          "I've blown up and can't deal with this by myself. "
+        Discord.simple_interaction_response(
+          interaction,
+          "I've blown up and can't deal with this by myself."
         )
 
         Logger.error(e)
     end
+  end
+
+  def handle_event({:READY, event, _}) do
+    CommandRegistry.call(event)
   end
 
   def handle_event(_event) do
