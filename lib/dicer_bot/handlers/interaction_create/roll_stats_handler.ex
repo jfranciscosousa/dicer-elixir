@@ -1,7 +1,7 @@
-defmodule DicerWeb.InteractionCreate.RollStatsHandler do
+defmodule DicerBot.InteractionCreate.RollStatsHandler do
   alias Dicer.RollStats
   alias Dicer.Utils.Format
-  alias Dicer.Utils.Discord
+  alias DicerBot.Utils.Discord
 
   def call(interaction) do
     author = Format.user_to_tag(interaction.user)

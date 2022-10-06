@@ -73,15 +73,13 @@
       <p>You can perform basic rolls this way:</p>
       <pre>
         <code>
-          !roll 2d20 + 10
+          /roll 2d20+10
         </code>
         <code>
           Dicer: (8 + 12) + 10 = 30
         </code>
       </pre>
-      <p>You can also delete all the commands made by users and the responses of the bot by running</p>
-      <pre>!clear</pre>
-      <p>If you have command conflicts with another bot you can prefix every call with the bot name, like <pre><code>!dicer clear</code></pre>
+      <p>You can browse more commands with the new Discord commands integration!</p>
       <p>
         <a href="https://github.com/jfranciscosousa/dicer">Check me out on Github</a>
       </p>

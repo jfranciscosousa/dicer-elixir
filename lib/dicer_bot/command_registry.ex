@@ -1,4 +1,4 @@
-defmodule DicerWeb.CommandRegistry do
+defmodule DicerBot.CommandRegistry do
   def call(event) do
     clear_global_application_commands()
     Enum.each(event.guilds, &register_commands/1)

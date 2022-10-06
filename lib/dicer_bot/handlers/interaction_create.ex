@@ -1,5 +1,5 @@
-defmodule DicerWeb.InteractionCreate do
-  alias DicerWeb.InteractionCreate.{RollHandler, RollStatsHandler}
+defmodule DicerBot.InteractionCreate do
+  alias DicerBot.InteractionCreate.{RollHandler, RollStatsHandler}
   alias Nostrum.Struct.Interaction
 
   def call(

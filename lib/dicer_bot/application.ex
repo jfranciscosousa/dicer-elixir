@@ -1,8 +1,8 @@
-defmodule DicerWeb.Bot do
+defmodule DicerBot.Application do
   require Logger
 
-  alias DicerWeb.CommandRegistry
-  alias Dicer.Utils.Discord
+  alias DicerBot.CommandRegistry
+  alias DicerBot.Utils.Discord
 
   use Nostrum.Consumer
 
@@ -16,7 +16,7 @@ defmodule DicerWeb.Bot do
 
   def handle_event({:INTERACTION_CREATE, interaction, _ws_state}) do
     try do
-      case DicerWeb.InteractionCreate.call(interaction) do
+      case DicerBot.InteractionCreate.call(interaction) do
         {:ok, :ignore} ->
           :ignore
 

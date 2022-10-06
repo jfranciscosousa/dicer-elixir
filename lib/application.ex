@@ -10,7 +10,7 @@ defmodule Dicer do
           port: Application.get_env(:dicer, :port)
         ]
       ),
-      DicerWeb.Bot
+      DicerBot.Application
     ]
 
     opts = [strategy: :one_for_one, name: :dicer]
