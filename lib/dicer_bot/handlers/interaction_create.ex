@@ -1,10 +1,23 @@
 defmodule DicerBot.InteractionCreate do
   alias DicerBot.InteractionCreate.{RollHandler, RollStatsHandler}
-  alias Nostrum.Struct.Interaction
+
+  alias Nostrum.Struct.{
+    Interaction,
+    ApplicationCommandInteractionData,
+    ApplicationCommandInteractionDataOption
+  }
 
   def call(
-        %Interaction{data: %{name: "roll", options: [%{value: expression}]}} =
-          interaction
+        %Interaction{
+          data: %ApplicationCommandInteractionData{
+            name: "roll",
+            options: [
+              %ApplicationCommandInteractionDataOption{
+                value: expression
+              }
+            ]
+          }
+        } = interaction
       ) do
     RollHandler.call(expression, interaction)
   end
@@ -13,7 +26,8 @@ defmodule DicerBot.InteractionCreate do
     RollStatsHandler.call(interaction)
   end
 
-  def call(_, _msg) do
-    {:ok, :ignore}
+  @spec call(Interaction.t()) :: {:ok} | {:error, any()}
+  def call(_) do
+    {:ok}
   end
 end

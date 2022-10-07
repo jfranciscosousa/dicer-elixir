@@ -2,7 +2,9 @@ defmodule DicerBot.InteractionCreate.RollHandler do
   alias Dicer.Roll
   alias Dicer.Utils.Format
   alias DicerBot.Utils.Discord
+  alias Nostrum.Struct.Interaction
 
+  @spec call(binary(), Interaction.t()) :: {:ok} | {:error, any()}
   def call(input, interaction) do
     author = Format.user_to_tag(interaction.user)
 

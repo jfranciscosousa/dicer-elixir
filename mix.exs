@@ -29,6 +29,7 @@ defmodule Dicer.MixProject do
          optional: false,
          override: true
        ]},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:plug_cowboy, "~> 2.5.2"},
       {:mock, "~> 0.3.7", only: :test},
       {:nostrum, "~> 0.6.1"}

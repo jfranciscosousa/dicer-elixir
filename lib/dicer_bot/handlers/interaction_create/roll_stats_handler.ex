@@ -3,6 +3,7 @@ defmodule DicerBot.InteractionCreate.RollStatsHandler do
   alias Dicer.Utils.Format
   alias DicerBot.Utils.Discord
 
+  @spec call(Interaction.t()) :: {:ok} | {:error, any()}
   def call(interaction) do
     author = Format.user_to_tag(interaction.user)
 
@@ -14,7 +15,7 @@ defmodule DicerBot.InteractionCreate.RollStatsHandler do
       {:error, :max_iterations} ->
         Discord.simple_interaction_response(
           interaction,
-          "A cosmic ray has blown up the algorithm. Try again, it won't hurt. I swear"
+          "A cosmic ray has blown up the algorithm. Try again, it won't hurt. I swear it."
         )
     end
   end

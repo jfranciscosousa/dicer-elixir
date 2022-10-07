@@ -17,12 +17,6 @@ defmodule DicerBot.Application do
   def handle_event({:INTERACTION_CREATE, interaction, _ws_state}) do
     try do
       case DicerBot.InteractionCreate.call(interaction) do
-        {:ok, :ignore} ->
-          :ignore
-
-        {:ok, _} ->
-          Logger.info("successfull command \"#{interaction.data.name}\"")
-
         {:ok} ->
           Logger.info("successfull command \"#{interaction.data.name}\"")
 
