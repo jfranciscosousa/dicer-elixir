@@ -26,8 +26,8 @@ defmodule DicerBot.InteractionCreate do
     RollStatsHandler.call(interaction)
   end
 
-  @spec call(Interaction.t()) :: {:ok} | {:error, any()}
+  @spec call(Interaction.t()) :: {:ok} | {:ok, any()} | {:error, any()}
   def call(_) do
-    {:ok}
+    {:ok, :ignore}
   end
 end

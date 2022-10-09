@@ -15,10 +15,15 @@ defmodule DicerBot.Application do
   end
 
   def handle_event({:INTERACTION_CREATE, interaction, _ws_state}) do
+    Logger.info("incoming command #{interaction.data.name}")
+
     try do
       case DicerBot.InteractionCreate.call(interaction) do
         {:ok} ->
           Logger.info("successfull command \"#{interaction.data.name}\"")
+
+        {:ok, :ignore} ->
+          Logger.info("ignored command \"#{interaction.data.name}\"")
 
         {:error, error} ->
           Discord.simple_interaction_response(
