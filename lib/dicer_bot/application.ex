@@ -15,37 +15,39 @@ defmodule DicerBot.Application do
   end
 
   def handle_event({:INTERACTION_CREATE, interaction, _ws_state}) do
-    Logger.info("incoming command #{interaction.data.name}")
+    Task.async(fn ->
+      Logger.info("incoming command #{interaction.data.name}")
 
-    try do
-      case DicerBot.InteractionCreate.call(interaction) do
-        {:ok} ->
-          Logger.info("successfull command \"#{interaction.data.name}\"")
+      try do
+        case DicerBot.InteractionCreate.call(interaction) do
+          {:ok} ->
+            Logger.info("successfull command \"#{interaction.data.name}\"")
 
-        {:ok, :ignore} ->
-          Logger.info("ignored command \"#{interaction.data.name}\"")
+          {:ok, :ignore} ->
+            Logger.info("ignored command \"#{interaction.data.name}\"")
 
-        {:error, error} ->
+          {:error, error} ->
+            Discord.simple_interaction_response(
+              interaction,
+              "I've blown up and can't deal with this by myself."
+            )
+
+            Logger.error(error)
+        end
+      rescue
+        e in RuntimeError ->
           Discord.simple_interaction_response(
             interaction,
             "I've blown up and can't deal with this by myself."
           )
 
-          Logger.error(error)
+          Logger.error(e)
       end
-    rescue
-      e in RuntimeError ->
-        Discord.simple_interaction_response(
-          interaction,
-          "I've blown up and can't deal with this by myself."
-        )
-
-        Logger.error(e)
-    end
+    end)
   end
 
   def handle_event({:READY, event, _}) do
-    CommandRegistry.call(event)
+    Task.async(fn -> CommandRegistry.call(event) end)
   end
 
   def handle_event(_event) do
