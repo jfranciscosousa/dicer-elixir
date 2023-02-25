@@ -1,21 +1,3 @@
-# Dicer
+# Dicer (Elixir)
 
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `dicer` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:dicer, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/dicer](https://hexdocs.pm/dicer).
-
+Used to be a Discord bot, now replaced by a Deno version. [Repo here.](https://github.com/jfranciscosousa/dicer)
